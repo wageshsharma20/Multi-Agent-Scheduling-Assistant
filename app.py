@@ -154,8 +154,11 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
     min-width: 12px !important;
     min-height: 12px !important;
     margin-top: 1.4rem !important; /* Align with the padded message bubble */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
-[data-testid="stChatMessageAvatar"] svg, [data-testid="stChatMessageAvatar"] img {
+[data-testid="stChatMessageAvatar"] * {
     display: none !important;
 }
 
@@ -167,7 +170,7 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
 
 /* ── Chat input bar (PromptBox Style) ── */
 /* Remove Streamlit's default solid background from the bottom container */
-[data-testid="stBottomBlockContainer"], .stAppBottomBlock, [data-testid="stBottom"] {
+[data-testid="stBottomBlockContainer"], .stAppBottomBlock, [data-testid="stBottom"], div:has(> [data-testid="stChatInput"]), div:has(> div > [data-testid="stChatInput"]) {
     background: transparent !important;
     background-color: transparent !important;
 }
@@ -328,16 +331,6 @@ with st.sidebar:
     st.markdown(f'<div class="thread-badge">SESSION ID: {thread_id[:8]}</div>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
-# Hero Header
-# ---------------------------------------------------------------------------
-st.markdown("""
-<div class="hero">
-    <h1 class="hero-title">Schedule appointments<br/>autonomously</h1>
-    <p class="hero-sub">Design, deploy, and scale specialized AI agents that plan, execute, and optimize work across your tools.</p>
-</div>
-""", unsafe_allow_html=True)
-
-# ---------------------------------------------------------------------------
 # Restore conversation history from LangGraph SQLite checkpointer
 # ---------------------------------------------------------------------------
 try:
@@ -349,9 +342,15 @@ try:
 except Exception:
     historical_messages = []
 
-# Show suggestion pills only on empty conversations
+# Show hero header and suggestion pills ONLY on empty conversations
 suggestion_clicked = None
 if not historical_messages:
+    st.markdown("""
+    <div class="hero">
+        <h1 class="hero-title">Schedule appointments<br/>autonomously</h1>
+        <p class="hero-sub">Design, deploy, and scale specialized AI agents that plan, execute, and optimize work across your tools.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown('<div class="suggestions">', unsafe_allow_html=True)
     cols = st.columns(3, gap="small")
