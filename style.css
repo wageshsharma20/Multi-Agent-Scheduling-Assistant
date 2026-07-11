@@ -85,7 +85,7 @@ div[aria-label="chat avatar"],
     margin: 0 auto !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
-    padding-top: 6rem !important;
+    padding-top: 7rem !important;
 }
 
 /* ── Chat Message Containers ── */
@@ -226,28 +226,53 @@ hr {
     top: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 80px;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255,255,255,0.05);
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+}
+.header-content {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
-    z-index: 999999;
 }
 .header-left {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     color: #ffffff;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 .header-logo {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     color: #ffffff;
+}
+.header-badges {
+    display: flex;
+    gap: 0.75rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+.badge {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: monospace;
 }
 .header-right {
     display: flex;
@@ -256,7 +281,7 @@ hr {
 .header-right a {
     color: #a1a1aa;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     transition: color 0.2s;
 }
 .header-right a:hover {

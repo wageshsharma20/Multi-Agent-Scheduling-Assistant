@@ -68,19 +68,26 @@ config = {"configurable": {"thread_id": thread_id}}
 # ---------------------------------------------------------------------------
 # Header Dashboard
 # ---------------------------------------------------------------------------
-st.markdown("""
+st.markdown(f"""
 <div class="top-header">
-    <div class="header-left">
-        <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <rect x="7" y="7" width="10" height="10" rx="1" ry="1"></rect>
-        </svg>
-        <span>ScheduleAI Agent</span>
-    </div>
-    <div class="header-right">
-        <a href="/" target="_self">Home</a>
-        <a href="https://github.com/wagesh" target="_blank">Docs</a>
-        <a href="/" target="_self">Restart Session</a>
+    <div class="header-content">
+        <div class="header-left">
+            <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <rect x="7" y="7" width="10" height="10" rx="1" ry="1"></rect>
+            </svg>
+            <span class="header-title">ScheduleAI Agent</span>
+            <div class="header-badges">
+                <span class="badge">Session: {thread_id[:8]}</span>
+                <span class="badge">Triage Agent: Active</span>
+                <span class="badge">Booking Agent: Active</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="/" target="_self">Home</a>
+            <a href="https://github.com/wagesh" target="_blank">Docs</a>
+            <a href="/" target="_self">Restart Session</a>
+        </div>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -103,7 +110,7 @@ if not historical_messages:
     st.markdown("""
     <div class="hero">
         <h1 class="hero-title">Schedule appointments<br/>autonomously</h1>
-        <p class="hero-sub">Design, deploy, and scale specialized AI agents that plan, execute, and optimize work across your tools.</p>
+        <p class="hero-sub">Multi-Agent Scheduling Assistant with Tool Validation & Mock Notifications.</p>
     </div>
     """, unsafe_allow_html=True)
 
