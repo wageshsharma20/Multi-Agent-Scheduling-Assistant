@@ -134,7 +134,6 @@ scheduling_assistant/
 ├── .streamlit/
 │   └── config.toml          # Headless server config for cloud deployment
 ├── requirements.txt         # Pinned Python dependencies
-├── render.yaml              # Render deployment blueprint
 ├── .env.example             # Template for required environment variables
 └── .gitignore               # Excludes .env, *.db, *.sqlite, __pycache__, etc.
 ```
@@ -152,8 +151,6 @@ State persistence is powered by LangGraph's **`SqliteSaver`** checkpointer backe
 4. The Streamlit UI replays all historical messages before rendering the chat input box
 
 **Why URL params instead of `st.session_state`?** Streamlit's `session_state` is cleared on browser refresh. URL query parameters survive refreshes, making them the correct mechanism for client-side thread retention.
-
-> ⚠️ **Known Limitation (Render Free Tier):** Render's free tier resets the disk on each new *deploy*. The SQLite files (`schedule.db`, `checkpoints.sqlite`) persist across requests during a running deployment session but are wiped if you push a new version. This is documented in the PRD as an acceptable known limitation. For production, replace `SqliteSaver` with a managed DB adapter (e.g., Supabase Postgres).
 
 ---
 
@@ -186,53 +183,10 @@ The app opens at `http://localhost:8501`.
 
 ---
 
-## 🔑 Getting Test Credentials (for Evaluators)
-
-### GROQ_API_KEY
-1. Visit [https://console.groq.com](https://console.groq.com)
-2. Sign up for a free account (no credit card required)
-3. Navigate to **API Keys → Create API Key**
-4. Copy the key (starts with `gsk_...`) and paste it into `.env`:
-   ```
-   GROQ_API_KEY=gsk_your_key_here
-   ```
-The free tier provides ample request quota to evaluate the application end-to-end.
-
-### WEBHOOK_URL (Mock Notification Endpoint)
-1. Visit [https://webhook.site](https://webhook.site)
-2. The page immediately generates a unique URL for you (e.g., `https://webhook.site/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)
-3. Copy that URL and paste it into `.env`:
-   ```
-   WEBHOOK_URL=https://webhook.site/your-uuid-here
-   ```
-4. Keep the webhook.site tab open — you will see the HTTP POST request arrive in real time when a booking is confirmed.
-
-> **Note:** The `WEBHOOK_URL` env var is optional for basic testing. If it is not set, `send_booking_notification` returns `status: "skipped"` gracefully and the booking is still fully confirmed. The agent will inform the user accordingly.
 
 ---
 
-## ☁️ Deployment
 
-### Render (Recommended)
-
-Render provides containerized Python web services where the SQLite files persist for the lifetime of a deployment.
-
-1. Push your code to a **public GitHub repository**
-2. Go to [render.com](https://render.com) → **New → Web Service**
-3. Connect your GitHub repo — Render will auto-detect `render.yaml`
-4. Click **Apply** / **Deploy**
-5. In the Render dashboard, go to **Environment** and set:
-   - `GROQ_API_KEY` → your Groq key
-   - `WEBHOOK_URL` → your webhook.site URL
-6. Wait for deployment to complete, then visit the provided `.onrender.com` URL
-
-> **Memory:** The app is designed to stay well under Render's **512MB free-tier limit**. LLM inference runs entirely on Groq's servers — the container only handles Streamlit requests, SQLite I/O, and lightweight HTTP calls.
-
-### Vercel (Alternative — with Caveats)
-
-> ⚠️ **Important:** Vercel is a serverless platform. Its filesystem is ephemeral between function invocations, meaning `checkpoints.sqlite` and `schedule.db` will reset frequently. The conversation persistence feature (FR-12) will not work reliably on Vercel without an external database. Vercel is acceptable for a quick demo but **Render is strongly recommended** for the full feature set.
-
----
 
 ## 🧪 Testing Scenarios
 
@@ -267,5 +221,5 @@ Render provides containerized Python web services where the SQLite files persist
 | Mock availability store | SQLite (`schedule.db`) — shared by `check_availability` & `reserve_slot` |
 | Mock notification | HTTP POST webhook (webhook.site) |
 | UI | Streamlit 1.44 |
-| Deployment | Render (recommended) / Vercel (limited) |
+| Deployment | Streamlit |
 | Python | 3.11+ |
