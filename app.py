@@ -152,17 +152,23 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
 }
 
 /* ── Chat input bar (PromptBox Style) ── */
+/* Remove Streamlit's default solid background from the bottom container */
+[data-testid="stBottomBlockContainer"], .stAppBottomBlock, [data-testid="stBottom"] {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
 [data-testid="stChatInput"] {
-    background: #212121 !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
+    background: #2f2f2f !important; /* ChatGPT true dark mode input color */
+    border: 1px solid rgba(255,255,255,0.15) !important;
     border-radius: 1.5rem !important;
     color: #ffffff !important;
     padding: 0.25rem 0.5rem !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
 }
 [data-testid="stChatInput"]:focus-within {
-    border-color: rgba(255,255,255,0.3) !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(255,255,255,0.4) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
 }
 [data-testid="stChatInput"] textarea {
     color: #ffffff !important;
