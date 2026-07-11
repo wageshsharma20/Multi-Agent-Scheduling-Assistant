@@ -146,7 +146,7 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
 }
 
 /* ── Chat Avatars (Green Squares) ── */
-[data-testid="stChatMessageAvatar"], div[class*="stChatMessageAvatar"] {
+[data-testid="stChatMessage"] > div:first-child {
     background: #00BC7D !important;
     background-color: #00BC7D !important;
     border-radius: 0px !important;
@@ -154,9 +154,12 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
     height: 12px !important;
     min-width: 12px !important;
     min-height: 12px !important;
+    max-width: 12px !important;
+    max-height: 12px !important;
     margin-top: 1.4rem !important;
+    color: transparent !important;
 }
-[data-testid="stChatMessageAvatar"] *, [data-testid="chatAvatarIcon-user"], [data-testid="chatAvatarIcon-assistant"], div[class*="stChatMessageAvatar"] * {
+[data-testid="stChatMessage"] > div:first-child * {
     display: none !important;
     opacity: 0 !important;
 }
@@ -371,7 +374,7 @@ if not historical_messages:
 for msg in historical_messages:
     if msg.type in ("human", "ai") and msg.content:
         role = "user" if msg.type == "human" else "assistant"
-        with st.chat_message(role):
+        with st.chat_message(role, avatar=" "):
             st.markdown(msg.content)
 
 # ---------------------------------------------------------------------------
@@ -381,10 +384,10 @@ prompt = st.chat_input("Type your message… e.g. 'Book me for tomorrow at 3pm'"
 final_prompt = prompt or suggestion_clicked
 
 if final_prompt:
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar=" "):
         st.markdown(final_prompt)
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar=" "):
         with st.spinner("Thinking…"):
             try:
                 response_state = compiled_graph.invoke(
