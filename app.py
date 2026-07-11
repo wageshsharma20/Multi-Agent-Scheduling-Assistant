@@ -370,11 +370,16 @@ if not historical_messages:
         suggestion_clicked = "Run cross-tool booking workflow"
     st.markdown('</div>', unsafe_allow_html=True)
 
+# ---------------------------------------------------------------------------
+# Transparent avatar hack (1x1 transparent PNG)
+# ---------------------------------------------------------------------------
+TRANSPARENT_AVATAR = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+
 # Render history
 for msg in historical_messages:
     if msg.type in ("human", "ai") and msg.content:
         role = "user" if msg.type == "human" else "assistant"
-        with st.chat_message(role, avatar=" "):
+        with st.chat_message(role, avatar=TRANSPARENT_AVATAR):
             st.markdown(msg.content)
 
 # ---------------------------------------------------------------------------
@@ -384,10 +389,10 @@ prompt = st.chat_input("Type your message… e.g. 'Book me for tomorrow at 3pm'"
 final_prompt = prompt or suggestion_clicked
 
 if final_prompt:
-    with st.chat_message("user", avatar=" "):
+    with st.chat_message("user", avatar=TRANSPARENT_AVATAR):
         st.markdown(final_prompt)
 
-    with st.chat_message("assistant", avatar=" "):
+    with st.chat_message("assistant", avatar=TRANSPARENT_AVATAR):
         with st.spinner("Thinking…"):
             try:
                 response_state = compiled_graph.invoke(
