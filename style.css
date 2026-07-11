@@ -1,0 +1,246 @@
+/* ── Global Reset ── */
+html, body, [class*="css"], h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea {
+    font-family: 'Arial', sans-serif !important;
+}
+
+/* ── Hide Streamlit chrome ── */
+#MainMenu, footer, header { visibility: hidden; }
+.stDeployButton { display: none; }
+[data-testid="stToolbar"] { display: none; }
+
+/* ── Hero header ── */
+.hero {
+    text-align: center;
+    padding: 3rem 1rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 2rem;
+}
+.hero-title {
+    font-family: 'Georgia', serif !important;
+    font-size: 3.5rem !important;
+    font-weight: 300;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+.hero-sub {
+    color: #a1a1aa;
+    font-size: 1.25rem !important;
+    margin-top: 1rem;
+    font-weight: 400;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ── Hide Hero dynamically when chat is active ── */
+.stApp:has([data-testid="stChatMessage"]) .hero,
+.stApp:has([data-testid="stChatMessage"]) .suggestions {
+    display: none !important;
+}
+
+/* ── Main Area Buttons (Suggestion Pills) ── */
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+section.main .stButton button {
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    color: #d4d4d8 !important;
+    font-size: 0.85rem !important;
+    border-radius: 0px !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s !important;
+}
+section.main .stButton button:hover {
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    color: #ffffff !important;
+}
+
+/* ── Chat Avatars (Hidden) ── */
+[data-testid="stChatMessage"] > div:first-child,
+[data-testid="stChatMessageAvatar"],
+.stChatMessageAvatar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+}
+
+/* ── Chat Message Containers ── */
+[data-testid="stChatMessage"] {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Streamlit flex wrapper for the message content */
+[data-testid="stChatMessageContent"] {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0 !important;
+}
+
+/* ── User Message (Left Side) ── */
+[data-testid="stChatMessage"]:has(.msg-user) [data-testid="stMarkdownContainer"] {
+    background: #111111 !important; 
+    border-radius: 8px !important;
+    padding: 1rem 1.25rem !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    align-self: flex-start !important;
+    width: fit-content !important;
+    max-width: 90% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+/* ── AI Message (Right Side) ── */
+[data-testid="stChatMessage"]:has(.msg-assistant) [data-testid="stMarkdownContainer"] {
+    background: transparent !important;
+    border: none !important;
+    padding: 1rem 0 !important;
+    color: #ffffff !important;
+    align-self: flex-end !important;
+    width: fit-content !important;
+    max-width: 90% !important;
+    text-align: left !important;
+}
+
+/* Make chat text bigger */
+[data-testid="stMarkdownContainer"] p, [data-testid="stMarkdownContainer"] li {
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+}
+
+/* ── Chat input bar (PromptBox Style) ── */
+[data-testid="stBottomBlockContainer"], .stAppBottomBlock, [data-testid="stBottom"], div:has(> [data-testid="stChatInput"]), div:has(> div > [data-testid="stChatInput"]), section[data-testid="stSidebar"] + div > div:last-child {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+[data-testid="stChatInput"] {
+    background: #2f2f2f !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-radius: 1.5rem !important;
+    color: #ffffff !important;
+    padding: 0.25rem 0.5rem !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
+}
+[data-testid="stChatInput"]:focus-within {
+    border-color: rgba(255,255,255,0.4) !important;
+}
+[data-testid="stChatInput"] textarea {
+    color: #ffffff !important;
+}
+[data-testid="stChatInput"] textarea::placeholder {
+    color: #a1a1aa !important;
+}
+
+/* Send button */
+[data-testid="stChatInputSubmitButton"] button {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 50% !important;
+    height: 2.2rem !important;
+    width: 2.2rem !important;
+    margin-right: 0.25rem !important;
+    transition: all 0.2s;
+}
+[data-testid="stChatInputSubmitButton"] button:hover {
+    background: rgba(255,255,255,0.1) !important;
+}
+[data-testid="stChatInputSubmitButton"] svg,
+[data-testid="stChatInputSubmitButton"] path {
+    fill: #ffffff !important;
+    color: #ffffff !important;
+}
+
+/* ── Success box ── */
+[data-testid="stSuccess"] {
+    background: rgba(0, 188, 125, 0.05) !important;
+    border: 1px solid rgba(0, 188, 125, 0.2) !important;
+    border-left: 3px solid #00BC7D !important;
+    color: #00BC7D !important;
+}
+
+/* ── Error box ── */
+[data-testid="stError"] {
+    background: rgba(239,68,68,0.05) !important;
+    border: 1px solid rgba(239,68,68,0.2) !important;
+    border-left: 3px solid #ef4444 !important;
+}
+
+/* ── Spinner ── */
+[data-testid="stSpinner"] {
+    color: #00BC7D !important;
+}
+
+/* ── Thread badge ── */
+.thread-badge {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #71717a;
+    font-size: 0.65rem;
+    font-family: monospace;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ── Divider ── */
+hr {
+    border-color: rgba(255,255,255,0.1) !important;
+    margin: 1.5rem 0 !important;
+}
+
+/* ── Sidebar ── */
+[data-testid="stSidebar"] {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border-right: 1px solid rgba(255,255,255,0.05) !important;
+}
+[data-testid="stSidebar"] * {
+    color: #a1a1aa !important;
+}
+[data-testid="stSidebar"] h3 {
+    color: #ffffff !important;
+    font-weight: 400;
+}
+[data-testid="stSidebar"] .stButton button {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    color: #ffffff !important;
+    border-radius: 0px !important;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+[data-testid="stSidebar"] .stButton button:hover {
+    background: rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.3) !important;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+
+/* ── Fade-in animation ── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+[data-testid="stChatMessage"] {
+    animation: fadeUp 0.3s ease both;
+}
