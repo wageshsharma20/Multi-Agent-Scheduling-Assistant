@@ -22,7 +22,7 @@ html, body, [class*="css"], h1, h2, h3, h4, h5, h6, p, span, div, button, input,
 }
 .hero-title {
     font-family: 'Georgia', serif !important;
-    font-size: 3.5rem !important;
+    font-size: 2.8rem !important;
     font-weight: 300;
     color: #ffffff;
     margin: 0;
@@ -32,7 +32,7 @@ html, body, [class*="css"], h1, h2, h3, h4, h5, h6, p, span, div, button, input,
 }
 .hero-sub {
     color: #a1a1aa;
-    font-size: 1.25rem !important;
+    font-size: 1rem !important;
     margin-top: 1rem;
     font-weight: 400;
     width: 100%;
@@ -58,9 +58,9 @@ section.main .stButton button {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.1) !important;
     color: #d4d4d8 !important;
-    font-size: 0.85rem !important;
+    font-size: 0.75rem !important;
     border-radius: 12px !important;
-    padding: 0.5rem 1rem !important;
+    padding: 0.4rem 0.8rem !important;
     transition: all 0.2s !important;
 }
 section.main .stButton button:hover {
@@ -90,7 +90,7 @@ div[aria-label="chat avatar"],
     margin: 0 auto !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
-    padding-top: 7rem !important;
+    padding-top: 5rem !important;
 }
 
 /* ── Chat Message Containers ── */
@@ -137,7 +137,7 @@ div[aria-label="chat avatar"],
 
 /* Make chat text bigger */
 [data-testid="stMarkdownContainer"] p, [data-testid="stMarkdownContainer"] li {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     line-height: 1.6 !important;
 }
 
@@ -231,7 +231,7 @@ hr {
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 50px;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -252,11 +252,11 @@ hr {
     gap: 1rem;
     color: #ffffff;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 .header-logo {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     color: #ffffff;
 }
 .header-badges {
@@ -270,8 +270,8 @@ hr {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 4px;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.6rem;
     color: #a1a1aa;
     text-transform: uppercase;
     letter-spacing: 0.05em;
