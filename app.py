@@ -137,9 +137,10 @@ section.main .stButton button p {
     border: none !important;
 }
 [data-testid="stChatMessage"] > div:last-child {
-    width: auto !important;
+    width: fit-content !important;
     max-width: 85% !important;
     flex-grow: 0 !important;
+    flex-basis: auto !important;
 }
 
 /* ── User Message (Left Side) ── */
