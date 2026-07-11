@@ -68,7 +68,6 @@ config = {"configurable": {"thread_id": thread_id}}
 # ---------------------------------------------------------------------------
 # Dashboard
 # ---------------------------------------------------------------------------
-st.markdown('<div class="dashboard-container">', unsafe_allow_html=True)
 dash_cols = st.columns([1, 1, 1, 1], gap="small")
 with dash_cols[0]:
     st.markdown(f'<div class="dash-metric"><div class="dash-label">SESSION ID</div><div class="dash-val">{thread_id[:8]}</div></div>', unsafe_allow_html=True)
@@ -80,7 +79,6 @@ with dash_cols[3]:
     if st.button("Restart Session", use_container_width=True):
         st.query_params["thread_id"] = str(uuid.uuid4())
         st.rerun()
-st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
 # Restore conversation history from LangGraph SQLite checkpointer

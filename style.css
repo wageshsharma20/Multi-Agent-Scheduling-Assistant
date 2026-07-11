@@ -49,17 +49,18 @@ html, body, [class*="css"], h1, h2, h3, h4, h5, h6, p, span, div, button, input,
     margin: 2rem 0;
 }
 section.main .stButton button {
-    background: rgba(255,255,255,0.03) !important;
+    background: rgba(0,0,0,0.4) !important;
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.1) !important;
     color: #d4d4d8 !important;
     font-size: 0.85rem !important;
-    border-radius: 0px !important;
+    border-radius: 12px !important;
     padding: 0.5rem 1rem !important;
     transition: all 0.2s !important;
 }
 section.main .stButton button:hover {
-    background: rgba(255,255,255,0.08) !important;
-    border-color: rgba(255,255,255,0.2) !important;
+    background: rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.3) !important;
     color: #ffffff !important;
 }
 
@@ -78,9 +79,10 @@ div[aria-label="chat avatar"],
     position: absolute !important;
 }
 
-/* ── Full Screen Chat Layout ── */
+/* ── Constrained Chat Layout ── */
 .block-container, [data-testid="stAppViewBlockContainer"], [data-testid="block-container"], [data-testid="stMainBlockContainer"] {
-    max-width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
 }
@@ -217,49 +219,38 @@ hr {
     margin: 1.5rem 0 !important;
 }
 
-/* ── Dashboard ── */
-.dashboard-container {
-    background: #000000;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding: 1rem 0;
-    margin-bottom: 2rem;
-}
+/* ── Dashboard Metrics ── */
 .dash-metric {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 .dash-label {
     font-size: 0.65rem;
-    color: #71717a;
+    color: #a1a1aa;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.3rem;
 }
 .dash-val {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #ffffff;
     font-weight: 500;
     font-family: monospace;
 }
-.dashboard-container .stButton button {
+/* Specifically target the dashboard's button (first block) */
+[data-testid="stVerticalBlock"] > [data-testid="stHorizontalBlock"]:first-of-type .stButton button {
     height: 100%;
-    background: rgba(255,255,255,0.05) !important;
-    border: 1px solid rgba(255,255,255,0.15) !important;
-    color: #ffffff !important;
-    border-radius: 6px !important;
-    font-weight: 500;
-    transition: all 0.2s;
-    min-height: 60px;
-}
-.dashboard-container .stButton button:hover {
-    background: rgba(255,255,255,0.1) !important;
-    border-color: rgba(255,255,255,0.3) !important;
+    min-height: 74px;
+    margin-bottom: 2rem;
 }
 
 /* ── Scrollbar ── */
