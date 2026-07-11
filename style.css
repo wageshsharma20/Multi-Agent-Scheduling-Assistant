@@ -152,7 +152,8 @@ div[aria-label="chat avatar"],
     border: 1px solid rgba(255,255,255,0.15) !important;
     border-radius: 1.5rem !important;
     color: #ffffff !important;
-    padding: 0.25rem 0.5rem !important;
+    padding: 0 0.5rem !important;
+    min-height: 45px !important;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
 }
 [data-testid="stChatInput"]:focus-within {
@@ -160,6 +161,9 @@ div[aria-label="chat avatar"],
 }
 [data-testid="stChatInput"] textarea {
     color: #ffffff !important;
+    min-height: 45px !important;
+    padding-top: 12px !important;
+    font-size: 0.95rem !important;
 }
 [data-testid="stChatInput"] textarea::placeholder {
     color: #a1a1aa !important;
