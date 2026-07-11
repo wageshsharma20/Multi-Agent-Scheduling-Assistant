@@ -124,44 +124,45 @@ section.main .stButton button p {
     padding: 0 0.5rem;
 }
 
-/* ── User message bubble ── */
-[data-testid="stChatMessage"][data-testid*="human"] .stChatMessageContent,
-div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) [data-testid="stMarkdownContainer"] {
-    background: rgba(255,255,255,0.08) !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
-    border-radius: 0px !important;
+/* ── Chat Avatars (Hidden) ── */
+[data-testid="stChatMessage"] > div:first-child {
+    display: none !important;
+}
+
+/* ── Chat Message Containers ── */
+[data-testid="stChatMessage"] {
+    display: flex !important;
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+}
+[data-testid="stChatMessage"] > div:last-child {
+    width: auto !important;
+    max-width: 85% !important;
+    flex-grow: 0 !important;
+}
+
+/* ── User Message (Left Side) ── */
+[data-testid="stChatMessage"]:has(.msg-user) {
+    justify-content: flex-start !important;
+}
+[data-testid="stChatMessage"]:has(.msg-user) > div:last-child [data-testid="stMarkdownContainer"] {
+    background: #111111 !important; /* Dark bubble from screenshot */
+    border-radius: 8px !important;
     padding: 1rem 1.25rem !important;
     color: #ffffff !important;
-    border-left: 3px solid #ffffff !important;
-}
-
-/* ── AI message bubble ── */
-div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [data-testid="stMarkdownContainer"] {
-    background: rgba(255,255,255,0.02) !important;
     border: 1px solid rgba(255,255,255,0.05) !important;
-    border-radius: 0px !important;
-    padding: 1rem 1.25rem !important;
-    color: #d4d4d8 !important;
-    border-left: 3px solid #00BC7D !important;
 }
 
-/* ── Chat Avatars (Green Squares) ── */
-[data-testid="stChatMessage"] > div:first-child {
-    background: #00BC7D !important;
-    background-color: #00BC7D !important;
-    border-radius: 0px !important;
-    width: 12px !important;
-    height: 12px !important;
-    min-width: 12px !important;
-    min-height: 12px !important;
-    max-width: 12px !important;
-    max-height: 12px !important;
-    margin-top: 1.4rem !important;
-    color: transparent !important;
+/* ── AI Message (Right Side) ── */
+[data-testid="stChatMessage"]:has(.msg-assistant) {
+    justify-content: flex-end !important;
 }
-[data-testid="stChatMessage"] > div:first-child * {
-    display: none !important;
-    opacity: 0 !important;
+[data-testid="stChatMessage"]:has(.msg-assistant) > div:last-child [data-testid="stMarkdownContainer"] {
+    background: transparent !important; /* No background */
+    border: none !important;
+    padding: 1rem 0 !important;
+    color: #ffffff !important;
 }
 
 /* Make chat text bigger */
@@ -265,8 +266,9 @@ hr {
 
 /* ── Sidebar ── */
 [data-testid="stSidebar"] {
-    background: #181818 !important;
-    border-right: 1px solid rgba(255,255,255,0.1) !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border-right: 1px solid rgba(255,255,255,0.05) !important;
 }
 [data-testid="stSidebar"] * {
     color: #a1a1aa !important;
@@ -380,6 +382,7 @@ for msg in historical_messages:
     if msg.type in ("human", "ai") and msg.content:
         role = "user" if msg.type == "human" else "assistant"
         with st.chat_message(role, avatar=TRANSPARENT_AVATAR):
+            st.markdown(f'<div class="msg-{role}"></div>', unsafe_allow_html=True)
             st.markdown(msg.content)
 
 # ---------------------------------------------------------------------------
@@ -390,9 +393,11 @@ final_prompt = prompt or suggestion_clicked
 
 if final_prompt:
     with st.chat_message("user", avatar=TRANSPARENT_AVATAR):
+        st.markdown('<div class="msg-user"></div>', unsafe_allow_html=True)
         st.markdown(final_prompt)
 
     with st.chat_message("assistant", avatar=TRANSPARENT_AVATAR):
+        st.markdown('<div class="msg-assistant"></div>', unsafe_allow_html=True)
         with st.spinner("Thinking…"):
             try:
                 response_state = compiled_graph.invoke(
