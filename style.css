@@ -75,6 +75,13 @@ section.main .stButton button:hover {
     opacity: 0 !important;
 }
 
+/* ── Full Screen Chat Layout ── */
+[data-testid="stMainBlockContainer"] {
+    max-width: 100% !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+}
+
 /* ── Chat Message Containers ── */
 [data-testid="stChatMessage"] {
     background: transparent !important;

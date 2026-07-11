@@ -130,8 +130,7 @@ for msg in historical_messages:
     if msg.type in ("human", "ai") and msg.content:
         role = "user" if msg.type == "human" else "assistant"
         with st.chat_message(role, avatar=TRANSPARENT_AVATAR):
-            st.markdown(f'<div class="msg-{role}"></div>', unsafe_allow_html=True)
-            st.markdown(msg.content)
+            st.markdown(f'<span class="msg-{role}" style="display:none;"></span>\n\n{msg.content}', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
 # Handle new input
@@ -141,11 +140,9 @@ final_prompt = prompt or suggestion_clicked
 
 if final_prompt:
     with st.chat_message("user", avatar=TRANSPARENT_AVATAR):
-        st.markdown('<div class="msg-user"></div>', unsafe_allow_html=True)
-        st.markdown(final_prompt)
+        st.markdown(f'<span class="msg-user" style="display:none;"></span>\n\n{final_prompt}', unsafe_allow_html=True)
 
     with st.chat_message("assistant", avatar=TRANSPARENT_AVATAR):
-        st.markdown('<div class="msg-assistant"></div>', unsafe_allow_html=True)
         with st.spinner("Thinking…"):
             try:
                 response_state = compiled_graph.invoke(
@@ -160,7 +157,7 @@ if final_prompt:
                         break
 
                 if final_content:
-                    st.markdown(final_content)
+                    st.markdown(f'<span class="msg-assistant" style="display:none;"></span>\n\n{final_content}', unsafe_allow_html=True)
                 else:
                     st.warning("No response generated. Please try again.")
 
