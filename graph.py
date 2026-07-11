@@ -53,7 +53,7 @@ def _get_llms():
     if _triage_llm is None or _booking_llm is None:
         _llm = ChatGroq(
             temperature=0,
-            model_name="llama-3.3-70b-versatile",  # llama3-8b-8192 was decommissioned
+            model_name="llama-3.1-8b-instant",
             max_tokens=1024,
         )
         _triage_llm = _llm.bind(response_format={"type": "json_object"})

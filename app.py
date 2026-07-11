@@ -173,8 +173,5 @@ if final_prompt:
 
             except Exception as e:
                 err = str(e)
-                if "decommissioned" in err or "model" in err.lower():
-                    st.error("⚠️ The selected Groq model is no longer available. The model has been updated — please restart the app.")
-                else:
-                    st.error(f"⚠️ Error: {err}\n\nCheck that `GROQ_API_KEY` is set correctly.")
+                st.error(f"⚠️ API Error: {err}\n\nMake sure your GROQ_API_KEY is valid and you haven't hit rate limits.")
                 logging.exception("Graph invocation error")
