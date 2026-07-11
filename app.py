@@ -66,6 +66,32 @@ html, body, [class*="css"], h1, h2, h3, h4, h5, h6, p, span, div, button, input,
 /* ── Page background ── */
 /* Handled in the dynamic style block above */
 
+/* ── Hero header ── */
+.hero {
+    text-align: center;
+    padding: 3rem 1rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 2rem;
+}
+.hero-title {
+    font-family: 'Georgia', serif !important;
+    font-size: 3.5rem !important;
+    font-weight: 300;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+.hero-sub {
+    color: #a1a1aa;
+    font-size: 1.25rem !important;
+    margin-top: 1rem;
+    font-weight: 400;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* ── Chat container ── */
 .suggestions {
     display: flex;
@@ -282,9 +308,14 @@ with st.sidebar:
     st.markdown(f'<div class="thread-badge">SESSION ID: {thread_id[:8]}</div>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
-# Empty State / Chat Concept
+# Hero Header
 # ---------------------------------------------------------------------------
-# Replaced static hero with dynamic centered state
+st.markdown("""
+<div class="hero">
+    <h1 class="hero-title">Schedule appointments<br/>autonomously</h1>
+    <p class="hero-sub">Design, deploy, and scale specialized AI agents that plan, execute, and optimize work across your tools.</p>
+</div>
+""", unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
 # Restore conversation history from LangGraph SQLite checkpointer
@@ -298,20 +329,9 @@ try:
 except Exception:
     historical_messages = []
 
-# Show suggestion pills and greeting only on empty conversations
+# Show suggestion pills only on empty conversations
 suggestion_clicked = None
 if not historical_messages:
-    # Push content down to center it vertically
-    st.markdown("<br><br><br><br>", unsafe_allow_html=True)
-    
-    # "How can I help you?" greeting
-    st.markdown("""
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; width: 100%; max-width: 600px; margin: 0 auto; margin-bottom: 3rem;">
-        <p style="text-align: center; font-size: 2.25rem; color: #ffffff; margin: 0; font-family: 'Georgia', serif; font-weight: 400;">
-            How can I help you?
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
 
     st.markdown('<div class="suggestions">', unsafe_allow_html=True)
     cols = st.columns(3, gap="small")
