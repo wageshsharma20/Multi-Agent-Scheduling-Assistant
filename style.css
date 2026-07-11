@@ -64,19 +64,22 @@ section.main .stButton button:hover {
 }
 
 /* ── Chat Avatars (Hidden) ── */
-[data-testid="stChatMessage"] > div:first-child,
 [data-testid="stChatMessageAvatar"],
-.stChatMessageAvatar {
+div[aria-label="chat avatar"],
+.stChatMessageAvatar,
+[data-testid="stChatMessage"] > div:first-child:not([data-testid="stChatMessageContent"]) {
     display: none !important;
     width: 0 !important;
     height: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
     opacity: 0 !important;
+    visibility: hidden !important;
+    position: absolute !important;
 }
 
 /* ── Full Screen Chat Layout ── */
-[data-testid="stMainBlockContainer"] {
+.block-container, [data-testid="stAppViewBlockContainer"], [data-testid="block-container"], [data-testid="stMainBlockContainer"] {
     max-width: 100% !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
