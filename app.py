@@ -145,6 +145,20 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
     border-left: 3px solid #00BC7D !important;
 }
 
+/* ── Chat Avatars (Green Squares) ── */
+[data-testid="stChatMessageAvatar"] {
+    background-color: #00BC7D !important;
+    border-radius: 0px !important;
+    width: 12px !important;
+    height: 12px !important;
+    min-width: 12px !important;
+    min-height: 12px !important;
+    margin-top: 1.4rem !important; /* Align with the padded message bubble */
+}
+[data-testid="stChatMessageAvatar"] svg, [data-testid="stChatMessageAvatar"] img {
+    display: none !important;
+}
+
 /* Make chat text bigger */
 [data-testid="stMarkdownContainer"] p, [data-testid="stMarkdownContainer"] li {
     font-size: 1.1rem !important;
