@@ -99,30 +99,32 @@ div[aria-label="chat avatar"],
     gap: 0 !important;
 }
 
-/* ── User Message (Left Side) ── */
+/* ── User Message (Right Side) ── */
 [data-testid="stChatMessage"]:has(.msg-user) [data-testid="stMarkdownContainer"] {
     background: #111111 !important; 
     border-radius: 8px !important;
     padding: 1rem 1.25rem !important;
     color: #ffffff !important;
     border: 1px solid rgba(255,255,255,0.05) !important;
-    align-self: flex-start !important;
+    align-self: flex-end !important;
     width: fit-content !important;
     max-width: 90% !important;
-    margin-left: 0 !important;
-    margin-right: auto !important;
+    margin-right: 0 !important;
+    margin-left: auto !important;
 }
 
-/* ── AI Message (Right Side) ── */
+/* ── AI Message (Left Side) ── */
 [data-testid="stChatMessage"]:has(.msg-assistant) [data-testid="stMarkdownContainer"] {
     background: transparent !important;
     border: none !important;
     padding: 1rem 0 !important;
     color: #ffffff !important;
-    align-self: flex-end !important;
+    align-self: flex-start !important;
     width: fit-content !important;
     max-width: 90% !important;
     text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
 }
 
 /* Make chat text bigger */

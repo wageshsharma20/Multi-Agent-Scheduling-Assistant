@@ -121,15 +121,13 @@ if not historical_messages:
     st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
-# Transparent avatar hack (1x1 transparent PNG)
-# ---------------------------------------------------------------------------
-TRANSPARENT_AVATAR = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+# Render history
 
 # Render history
 for msg in historical_messages:
     if msg.type in ("human", "ai") and msg.content:
         role = "user" if msg.type == "human" else "assistant"
-        with st.chat_message(role, avatar=TRANSPARENT_AVATAR):
+        with st.chat_message(role):
             st.markdown(f'<span class="msg-{role}" style="display:none;"></span>\n\n{msg.content}', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
@@ -139,10 +137,10 @@ prompt = st.chat_input("Type your message… e.g. 'Book me for tomorrow at 3pm'"
 final_prompt = prompt or suggestion_clicked
 
 if final_prompt:
-    with st.chat_message("user", avatar=TRANSPARENT_AVATAR):
+    with st.chat_message("user"):
         st.markdown(f'<span class="msg-user" style="display:none;"></span>\n\n{final_prompt}', unsafe_allow_html=True)
 
-    with st.chat_message("assistant", avatar=TRANSPARENT_AVATAR):
+    with st.chat_message("assistant"):
         with st.spinner("Thinking…"):
             try:
                 response_state = compiled_graph.invoke(
