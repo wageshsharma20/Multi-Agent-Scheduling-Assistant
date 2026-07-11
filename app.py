@@ -66,33 +66,7 @@ html, body, [class*="css"], h1, h2, h3, h4, h5, h6, p, span, div, button, input,
 /* ── Page background ── */
 /* Handled in the dynamic style block above */
 
-/* ── Hero header ── */
-.hero {
-    text-align: center;
-    padding: 3rem 1rem 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    margin-bottom: 2rem;
-}
-.hero-title {
-    font-family: 'Georgia', serif !important;
-    font-size: 3.5rem !important;
-    font-weight: 300;
-    color: #ffffff;
-    margin: 0;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-}
-.hero-sub {
-    color: #a1a1aa;
-    font-size: 1.25rem !important;
-    margin-top: 1rem;
-    font-weight: 400;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* ── Suggestion pills ── */
+/* ── Chat container ── */
 .suggestions {
     display: flex;
     flex-wrap: wrap;
@@ -151,36 +125,42 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
     line-height: 1.6 !important;
 }
 
-/* ── Chat input bar ── */
+/* ── Chat input bar (PromptBox Style) ── */
 [data-testid="stChatInput"] {
-    background: #181818 !important;
-    border: 1px solid rgba(255,255,255,0.15) !important;
-    border-radius: 0px !important;
+    background: #212121 !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 1.5rem !important;
     color: #ffffff !important;
+    padding: 0.25rem 0.5rem !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15) !important;
 }
 [data-testid="stChatInput"]:focus-within {
-    border-color: #00BC7D !important;
-    box-shadow: none !important;
+    border-color: rgba(255,255,255,0.3) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15) !important;
 }
 [data-testid="stChatInput"] textarea {
     color: #ffffff !important;
 }
 [data-testid="stChatInput"] textarea::placeholder {
-    color: #52525b !important;
+    color: #a1a1aa !important;
 }
 
 /* ── Send button ── */
 [data-testid="stChatInputSubmitButton"] button {
     background: #ffffff !important;
-    color: #000000 !important;
+    color: #212121 !important;
     border: none !important;
-    border-radius: 0px !important;
+    border-radius: 50% !important;
+    height: 2.2rem !important;
+    width: 2.2rem !important;
+    margin-right: 0.25rem !important;
+    transition: all 0.2s;
 }
 [data-testid="stChatInputSubmitButton"] button:hover {
     background: #e4e4e7 !important;
 }
 [data-testid="stChatInputSubmitButton"] svg {
-    fill: #000000 !important;
+    fill: #212121 !important;
 }
 
 /* ── Success box ── */
@@ -302,14 +282,9 @@ with st.sidebar:
     st.markdown(f'<div class="thread-badge">SESSION ID: {thread_id[:8]}</div>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
-# Hero Header
+# Empty State / Chat Concept
 # ---------------------------------------------------------------------------
-st.markdown("""
-<div class="hero">
-    <h1 class="hero-title">Schedule appointments<br/>autonomously</h1>
-    <p class="hero-sub">Design, deploy, and scale specialized AI agents that plan, execute, and optimize work across your tools.</p>
-</div>
-""", unsafe_allow_html=True)
+# Replaced static hero with dynamic centered state
 
 # ---------------------------------------------------------------------------
 # Restore conversation history from LangGraph SQLite checkpointer
@@ -323,9 +298,21 @@ try:
 except Exception:
     historical_messages = []
 
-# Show suggestion pills only on empty conversations
+# Show suggestion pills and greeting only on empty conversations
 suggestion_clicked = None
 if not historical_messages:
+    # Push content down to center it vertically
+    st.markdown("<br><br><br><br>", unsafe_allow_html=True)
+    
+    # "How can I help you?" greeting
+    st.markdown("""
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; width: 100%; max-width: 600px; margin: 0 auto; margin-bottom: 3rem;">
+        <p style="text-align: center; font-size: 2.25rem; color: #ffffff; margin: 0; font-family: 'Georgia', serif; font-weight: 400;">
+            How can I help you?
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown('<div class="suggestions">', unsafe_allow_html=True)
     cols = st.columns(3, gap="small")
     if cols[0].button("Deploy agent for tomorrow at 2pm", use_container_width=True):
