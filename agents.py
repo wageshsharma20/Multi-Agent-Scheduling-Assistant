@@ -1,5 +1,4 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from datetime import datetime
 
 
 # ---------------------------------------------------------------------------
