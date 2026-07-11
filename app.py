@@ -66,19 +66,24 @@ thread_id = st.query_params["thread_id"]
 config = {"configurable": {"thread_id": thread_id}}
 
 # ---------------------------------------------------------------------------
-# Dashboard
+# Header Dashboard
 # ---------------------------------------------------------------------------
-dash_cols = st.columns([1, 1, 1, 1], gap="small")
-with dash_cols[0]:
-    st.markdown(f'<div class="dash-metric"><div class="dash-label">SESSION ID</div><div class="dash-val">{thread_id[:8]}</div></div>', unsafe_allow_html=True)
-with dash_cols[1]:
-    st.markdown('<div class="dash-metric"><div class="dash-label">TRIAGE AGENT</div><div class="dash-val">Active</div></div>', unsafe_allow_html=True)
-with dash_cols[2]:
-    st.markdown('<div class="dash-metric"><div class="dash-label">BOOKING AGENT</div><div class="dash-val">Active</div></div>', unsafe_allow_html=True)
-with dash_cols[3]:
-    if st.button("Restart Session", use_container_width=True):
-        st.query_params["thread_id"] = str(uuid.uuid4())
-        st.rerun()
+st.markdown("""
+<div class="top-header">
+    <div class="header-left">
+        <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <rect x="7" y="7" width="10" height="10" rx="1" ry="1"></rect>
+        </svg>
+        <span>ScheduleAI Agent</span>
+    </div>
+    <div class="header-right">
+        <a href="/" target="_self">Home</a>
+        <a href="https://github.com/wagesh" target="_blank">Docs</a>
+        <a href="/" target="_self">Restart Session</a>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
 # Restore conversation history from LangGraph SQLite checkpointer

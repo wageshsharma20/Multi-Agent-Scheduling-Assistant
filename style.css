@@ -85,6 +85,7 @@ div[aria-label="chat avatar"],
     margin: 0 auto !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
+    padding-top: 6rem !important;
 }
 
 /* ── Chat Message Containers ── */
@@ -219,38 +220,47 @@ hr {
     margin: 1.5rem 0 !important;
 }
 
-/* ── Dashboard Metrics ── */
-.dash-metric {
+/* ── Top Header Dashboard ── */
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 999999;
 }
-.dash-label {
-    font-size: 0.65rem;
-    color: #a1a1aa;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.3rem;
-}
-.dash-val {
-    font-size: 1rem;
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     color: #ffffff;
     font-weight: 500;
-    font-family: monospace;
+    font-size: 1rem;
 }
-/* Specifically target the dashboard's button (first block) */
-[data-testid="stVerticalBlock"] > [data-testid="stHorizontalBlock"]:first-of-type .stButton button {
-    height: 100%;
-    min-height: 74px;
-    margin-bottom: 2rem;
+.header-logo {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+}
+.header-right {
+    display: flex;
+    gap: 2rem;
+}
+.header-right a {
+    color: #a1a1aa;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+}
+.header-right a:hover {
+    color: #ffffff;
 }
 
 /* ── Scrollbar ── */
