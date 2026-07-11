@@ -85,7 +85,7 @@ st.markdown(f"""
         </div>
         <div class="header-right">
             <a href="/" target="_self">Home</a>
-            <a href="https://github.com/wagesh" target="_blank">Docs</a>
+            <a href="https://github.com/wageshsharma20/Multi-Agent-Scheduling-Assistant" target="_blank">Docs</a>
             <a href="/" target="_self">Restart Session</a>
         </div>
     </div>
