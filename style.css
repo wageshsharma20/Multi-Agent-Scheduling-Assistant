@@ -217,28 +217,47 @@ hr {
     margin: 1.5rem 0 !important;
 }
 
-/* ── Sidebar ── */
-[data-testid="stSidebar"] {
-    background: #000000 !important;
-    background-color: #000000 !important;
-    border-right: 1px solid rgba(255,255,255,0.05) !important;
+/* ── Dashboard ── */
+.dashboard-container {
+    background: #000000;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
 }
-[data-testid="stSidebar"] * {
-    color: #a1a1aa !important;
+.dash-metric {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
-[data-testid="stSidebar"] h3 {
-    color: #ffffff !important;
-    font-weight: 400;
+.dash-label {
+    font-size: 0.65rem;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
 }
-[data-testid="stSidebar"] .stButton button {
+.dash-val {
+    font-size: 0.9rem;
+    color: #ffffff;
+    font-weight: 500;
+    font-family: monospace;
+}
+.dashboard-container .stButton button {
+    height: 100%;
     background: rgba(255,255,255,0.05) !important;
     border: 1px solid rgba(255,255,255,0.15) !important;
     color: #ffffff !important;
-    border-radius: 0px !important;
+    border-radius: 6px !important;
     font-weight: 500;
     transition: all 0.2s;
+    min-height: 60px;
 }
-[data-testid="stSidebar"] .stButton button:hover {
+.dashboard-container .stButton button:hover {
     background: rgba(255,255,255,0.1) !important;
     border-color: rgba(255,255,255,0.3) !important;
 }

@@ -66,27 +66,21 @@ thread_id = st.query_params["thread_id"]
 config = {"configurable": {"thread_id": thread_id}}
 
 # ---------------------------------------------------------------------------
-# Sidebar
+# Dashboard
 # ---------------------------------------------------------------------------
-with st.sidebar:
-    st.markdown("### Evolv AI Agent")
-    st.markdown("Automate workflows with an agent that plans, executes, and optimizes operations.")
-    st.divider()
-    st.markdown("""
-<div style="font-size: 0.8rem; line-height: 1.6;">
-<div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-<strong>Triage Agent:</strong> Classifies intent
-</div>
-<div style="display: flex; align-items: center;">
-<strong>Booking Specialist:</strong> Executes workflow
-</div>
-</div>
-    """, unsafe_allow_html=True)
-    st.divider()
-    if st.button("Initialize New Session", use_container_width=True):
+st.markdown('<div class="dashboard-container">', unsafe_allow_html=True)
+dash_cols = st.columns([1, 1, 1, 1], gap="small")
+with dash_cols[0]:
+    st.markdown(f'<div class="dash-metric"><div class="dash-label">SESSION ID</div><div class="dash-val">{thread_id[:8]}</div></div>', unsafe_allow_html=True)
+with dash_cols[1]:
+    st.markdown('<div class="dash-metric"><div class="dash-label">TRIAGE AGENT</div><div class="dash-val">Active</div></div>', unsafe_allow_html=True)
+with dash_cols[2]:
+    st.markdown('<div class="dash-metric"><div class="dash-label">BOOKING AGENT</div><div class="dash-val">Active</div></div>', unsafe_allow_html=True)
+with dash_cols[3]:
+    if st.button("Restart Session", use_container_width=True):
         st.query_params["thread_id"] = str(uuid.uuid4())
         st.rerun()
-    st.markdown(f'<div class="thread-badge">SESSION ID: {thread_id[:8]}</div>', unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
 # Restore conversation history from LangGraph SQLite checkpointer
@@ -122,8 +116,7 @@ if not historical_messages:
 
 # ---------------------------------------------------------------------------
 # Render history
-
-# Render history
+# ---------------------------------------------------------------------------
 for msg in historical_messages:
     if msg.type in ("human", "ai") and msg.content:
         role = "user" if msg.type == "human" else "assistant"

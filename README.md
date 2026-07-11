@@ -1,6 +1,6 @@
 # 📅 Multi-Agent Scheduling Assistant
 
-A conversational appointment-booking assistant built with **LangGraph**, **Groq (Llama 3 8B)**, and **Streamlit**. It demonstrates a clean multi-agent architecture where a **Triage Agent** handles intent classification and a **Booking Specialist** manages the full transactional booking workflow — including date normalization, tool calling, conflict negotiation, and mock webhook notifications.
+A conversational appointment-booking assistant built with **LangGraph**, **Groq (Llama 3 8B)**, and **Streamlit**. It demonstrates a clean multi-agent architecture where a **Triage Agent** handles intent classification and a **Booking Specialist** manages the full transactional booking workflow — including date normalization, tool calling, conflict negotiation, and mock webhook notifications. The application features a sleek dark-mode UI with a top-level status dashboard for real-time observability.
 
 > **Live Demo:** *(Add your Render URL here after deployment)*
 
