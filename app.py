@@ -146,20 +146,19 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
 }
 
 /* ── Chat Avatars (Green Squares) ── */
-[data-testid="stChatMessageAvatar"] {
+[data-testid="stChatMessageAvatar"], div[class*="stChatMessageAvatar"] {
+    background: #00BC7D !important;
     background-color: #00BC7D !important;
     border-radius: 0px !important;
     width: 12px !important;
     height: 12px !important;
     min-width: 12px !important;
     min-height: 12px !important;
-    margin-top: 1.4rem !important; /* Align with the padded message bubble */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    margin-top: 1.4rem !important;
 }
-[data-testid="stChatMessageAvatar"] * {
+[data-testid="stChatMessageAvatar"] *, [data-testid="chatAvatarIcon-user"], [data-testid="chatAvatarIcon-assistant"], div[class*="stChatMessageAvatar"] * {
     display: none !important;
+    opacity: 0 !important;
 }
 
 /* Make chat text bigger */
@@ -170,7 +169,7 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
 
 /* ── Chat input bar (PromptBox Style) ── */
 /* Remove Streamlit's default solid background from the bottom container */
-[data-testid="stBottomBlockContainer"], .stAppBottomBlock, [data-testid="stBottom"], div:has(> [data-testid="stChatInput"]), div:has(> div > [data-testid="stChatInput"]) {
+[data-testid="stBottomBlockContainer"], .stAppBottomBlock, [data-testid="stBottom"], div:has(> [data-testid="stChatInput"]), div:has(> div > [data-testid="stChatInput"]), section[data-testid="stSidebar"] + div > div:last-child {
     background: transparent !important;
     background-color: transparent !important;
 }
@@ -253,6 +252,12 @@ div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [
 hr {
     border-color: rgba(255,255,255,0.1) !important;
     margin: 1.5rem 0 !important;
+}
+
+/* ── Hide Hero dynamically when chat is active ── */
+.stApp:has([data-testid="stChatMessage"]) .hero,
+.stApp:has([data-testid="stChatMessage"]) .suggestions {
+    display: none !important;
 }
 
 /* ── Sidebar ── */
