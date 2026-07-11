@@ -154,6 +154,8 @@ div[aria-label="chat avatar"],
     color: #ffffff !important;
     padding: 0 0.5rem !important;
     min-height: 45px !important;
+    height: 45px !important;
+    max-height: 45px !important;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
 }
 [data-testid="stChatInput"]:focus-within {
@@ -162,6 +164,8 @@ div[aria-label="chat avatar"],
 [data-testid="stChatInput"] textarea {
     color: #ffffff !important;
     min-height: 45px !important;
+    height: 45px !important;
+    max-height: 45px !important;
     padding-top: 12px !important;
     font-size: 0.95rem !important;
 }
@@ -235,7 +239,8 @@ hr {
     top: 0;
     left: 0;
     right: 0;
-    height: 50px;
+    height: 50px !important;
+    max-height: 50px !important;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255,255,255,0.05);
