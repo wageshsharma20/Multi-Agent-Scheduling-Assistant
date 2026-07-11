@@ -193,13 +193,7 @@ div[aria-label="chat avatar"],
 [data-testid="stChatInputSubmitButton"] button:hover {
     background: rgba(255,255,255,0.1) !important;
 }
-[data-testid="stChatInputSubmitButton"] svg {
-    color: #ffffff !important;
-    background: transparent !important;
-}
-[data-testid="stChatInputSubmitButton"] svg * {
-    fill: currentColor !important;
-}
+
 
 /* ── Success box ── */
 [data-testid="stSuccess"] {
